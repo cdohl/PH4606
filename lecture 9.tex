@@ -1,0 +1,511 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+\usepackage{parskip}
+
+
+\AtBeginDocument{
+\heavyrulewidth=.08em
+\lightrulewidth=.05em
+\cmidrulewidth=.03em
+\belowrulesep=.65ex
+\belowbottomsep=0pt
+\aboverulesep=.4ex
+\abovetopsep=0pt
+\cmidrulesep=\doublerulesep
+\cmidrulekern=.5em
+\defaultaddspace=.5em
+}
+\newcommand{\fudm}[2]{\frac{\mathrm{D} #1}{\mathrm{D} #2}}
+\newcommand{\pad}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ppad}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\ppadd}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\nnabla}{\nabla^2}
+\newcommand{\eps}{\epsilon}
+\newcommand{\vdetail}[1]{\vb{#1}=\begin{pmatrix}#1_1\\#1_2\\#1_3\end{pmatrix}}
+\newcommand{\vb}[1]{\mathbf{#1}}
+\newcommand{\va}[1]{\vec{#1}}
+\newcommand{\tb}[1]{\underline{\underline{\mathbf{#1}}}}
+\newcommand{\fud}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+
+
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{lecture 9}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \author{Claus-Dieter Ohl}\title{PH4606 - Lecture 6}
+
+\date{\today}
+\maketitle
+
+    
+    
+
+    
+\section{Medical Ultrasound 2}\label{medical-ultrasound-2}
+\subsection{Bioeffects from ultrasound
+imaging}\label{bioeffects-from-ultrasound-imaging}
+
+Since 1992 ultrasound imaging systems are regulated to display two
+indices to account for potential bioffects from heating and cavitation
+(activation of gaseous nuclei). The ultrasonic scanners must show in
+real time the thermal indidces (TIs) and the mechanical index (MI) which
+is a function of the operation mode of the US scanner.
+
+\subsection{Mechanical index}\label{mechanical-index}
+
+The mechanical index, MI, in ultrasound imaging is defined as
+
+\begin{equation}
+\mathrm{MI}=\frac{\mathrm{PNP}}{\sqrt{f_c}}\label{eq:9.1}\tag{9.1}
+\end{equation}
+
+where PNP is the peak negative pressure at the position of imaging and
+\(f_c\) is the center frequency of the imaging device.
+
+For an MI \textless{} 0.3 the acoustic amplitude is considered low, for
+0.3 \textless{} MI \textless{} 0.7 there is a possibility of minor
+damage to neonatal lung or intestine. Above MI \textgreater{} 0.7 there
+is a theoretical risk of cavitation. Medical US scanners are limited to
+an MI of 1.9 for imaging.
+\subsubsection{Rayleigh Plesset
+Equation}\label{rayleigh-plesset-equation}
+
+The Rayleigh Plesset Equation (without viscous dissipation) is given by
+Eq. (9.2):
+
+\begin{equation}
+R \ddot{R} +\frac{3}{2} \dot{R}^2=\frac{p_v-p_\infty(t)}{\rho}+\frac{p_{g0}}{\rho}\left(\frac{R_0}{R}\right)^{3\kappa}-\frac{2\sigma}{\rho R}\label{9.2}\tag{9.2}
+\end{equation}
+
+The driving of the bubble occurs through the pressure \(p_\infty(t)\)
+term. This could be for example through a harmonic driving
+\(p_\infty(t)=p_0 + p_a \sin (\omega t)\) where \(\omega\) is the
+angular frequency, \(p_0\) the static pressure, and \(p_a\) the
+amplitude of the driving.
+
+We want to solve this equation for small and large oscillations,
+i.e.~for small and large pressures \(p_a\). To do so we first define the
+constants for an air bubble in water at room temperature undergoing
+isothermal compression.
+
+The gas pressure at equilibrium is given by the equilibrium condition
+
+\begin{equation}
+p_v+p_{g0}=p_\infty+\frac{2\sigma}{R}\label{9.3}\tag{9.3}
+\end{equation}
+
+We can solve this nonlinear ODE with the built in solver in python.
+Therefore, we have to rephrase the 2nd Order ODE into two first order
+ODEs by variable substitution:
+
+\begin{eqnarray}
+y_0&=&R\\
+y_1&=&\dot{R}
+\end{eqnarray}
+
+\begin{equation}
+\dot{R}=\frac{dy_0}{dt}=y_1\label{9.4}\tag{9.4}
+\end{equation}
+
+and using the Rayleigh Equation we obtain:
+
+\begin{equation}
+\ddot{R}=\frac{dy_1}{dt}=\frac{1}{y_0}\left[
+\frac{p_v-p_\infty(t)}{\rho}+\frac{p_g0}{\rho}\left(\frac{R_0}{y_0}\right)^{3\kappa}-\frac{2\sigma}{\rho y_0}-\frac{3}{2}(y_1)^2
+\right]\label{9.5}\tag{9.5}
+\end{equation}
+
+We use a slightly modified version of the equation by introducing
+additionally some dissipation from viscosity of the liquid. This term is
+added on thr R.H.S of Eq. (9.5) which is \(-4\mu\dot{R}{R}^{-1}\).
+
+These two first order ODEs are defined in the function \texttt{rp(t,y)}
+\begin{Verbatim}[commandchars=\\\{\},gobble=2,numbers=left,fontsize=\small,baselinestretch=1]
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline 
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np} \PY{c+c1}{\PYZsh{}work with arrays}
+\PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{integrate}
+\PY{c+c1}{\PYZsh{}from scipy.integrate import odeint}
+\PY{k+kn}{from} \PY{n+nn}{matplotlib.pylab} \PY{k+kn}{import} \PY{o}{*}
+\PY{k+kn}{from} \PY{n+nn}{IPython} \PY{k+kn}{import} \PY{n}{display}
+\PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k+kn}{import} \PY{n}{widgets}
+
+\PY{k}{global} \PY{n}{f}\PY{p}{,} \PY{n}{pa}\PY{p}{,} \PY{n}{R0}\PY{p}{,} \PY{n}{ncycles}
+
+\PY{n}{pv}\PY{o}{=}\PY{l+m+mf}{2.3388e3}     \PY{c+c1}{\PYZsh{}[Pa] vapour pressure of water}
+\PY{n}{sigma}\PY{o}{=}\PY{l+m+mf}{0.072}     \PY{c+c1}{\PYZsh{}[N/m] coefficient of surface tension between air and water}
+\PY{n}{rho}\PY{o}{=}\PY{l+m+mf}{998.}        \PY{c+c1}{\PYZsh{}[kg/m\PYZca{}3] density of water}
+\PY{n}{kappa}\PY{o}{=}\PY{l+m+mf}{1.}       \PY{c+c1}{\PYZsh{}polytropic exponent of the gas}
+\PY{n}{p0}\PY{o}{=}\PY{l+m+mf}{1e5}          \PY{c+c1}{\PYZsh{}[Pa] static pressure}
+\PY{n}{nu}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}6}         \PY{c+c1}{\PYZsh{}[m\PYZca{}2/s]}
+
+\PY{c+c1}{\PYZsh{}Rayleigh Plesset Equation}
+\PY{k}{def} \PY{n+nf}{rp}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{:}
+    \PY{k}{global} \PY{n}{f}\PY{p}{,} \PY{n}{pa}\PY{p}{,} \PY{n}{R0}\PY{p}{,} \PY{n}{ncycles}
+    \PY{n}{pinfty}\PY{o}{=}\PY{n}{p0}\PY{o}{\PYZhy{}}\PY{n}{pa}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{f}\PY{o}{*}\PY{l+m+mf}{2.}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{n}{t}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{l+m+mf}{1.}\PY{o}{/}\PY{n}{f}\PY{o}{*}\PY{n}{ncycles}\PY{o}{\PYZgt{}}\PY{n}{t}\PY{p}{)}
+    \PY{n}{pg0}\PY{o}{=}\PY{n}{p0}\PY{o}{+}\PY{l+m+mf}{2.}\PY{o}{*}\PY{n}{sigma}\PY{o}{/}\PY{n}{R0}\PY{o}{\PYZhy{}}\PY{n}{pv}
+    \PY{n}{dydt0}\PY{o}{=}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{dydt1}\PY{o}{=}\PY{p}{(}\PY{n}{pv}\PY{o}{\PYZhy{}}\PY{n}{pinfty}\PY{o}{+}\PY{n}{pg0}\PY{o}{*}\PY{p}{(}\PY{n}{R0}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mf}{3.}\PY{o}{*}\PY{n}{kappa}\PY{p}{)}\PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{l+m+mf}{2.}\PY{o}{*}\PY{n}{sigma}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{rho}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.5}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{2.}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{l+m+mf}{4.}\PY{o}{*}\PY{n}{nu}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{k}{return} \PY{p}{[}\PY{n}{dydt0}\PY{p}{,}\PY{n}{dydt1}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{plotall}\PY{p}{(}\PY{n}{newvalue}\PY{p}{)}\PY{p}{:}
+    \PY{k}{global} \PY{n}{f}
+    \PY{k}{global} \PY{n}{pa}
+    \PY{k}{global} \PY{n}{R0}
+    \PY{k}{global} \PY{n}{ncycles}
+    
+    \PY{c+c1}{\PYZsh{}set the variables according to the user input}
+    \PY{n}{f}\PY{o}{=}\PY{n}{w\PYZus{}frequency}\PY{o}{.}\PY{n}{value}\PY{o}{*}\PY{l+m+mf}{1.e6}
+    \PY{n}{pa}\PY{o}{=}\PY{n}{w\PYZus{}pressure}\PY{o}{.}\PY{n}{value}\PY{o}{*}\PY{l+m+mf}{1.e5}
+    \PY{n}{R0}\PY{o}{=}\PY{n}{w\PYZus{}R0}\PY{o}{.}\PY{n}{value}\PY{o}{*}\PY{l+m+mf}{1.e\PYZhy{}6}
+    \PY{n}{ncycles}\PY{o}{=}\PY{n+nb}{float}\PY{p}{(}\PY{n}{w\PYZus{}ncycles}\PY{o}{.}\PY{n}{value}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{}Setting initial conditions}
+    \PY{n}{t\PYZus{}sim}\PY{o}{=}\PY{l+m+mf}{10.}\PY{o}{/}\PY{n}{f}
+    \PY{n}{delta\PYZus{}t} \PY{o}{=} \PY{n}{t\PYZus{}sim}\PY{o}{/}\PY{l+m+mf}{1000.}
+    \PY{n}{num\PYZus{}steps} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{t\PYZus{}sim}\PY{o}{/}\PY{n}{delta\PYZus{}t}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{3}
+    \PY{n}{time} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{num\PYZus{}steps}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+    \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{num\PYZus{}steps}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+    \PY{n}{time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.}
+    \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{R0}
+
+    \PY{n}{ode15s} \PY{o}{=} \PY{n}{integrate}\PY{o}{.}\PY{n}{ode}\PY{p}{(}\PY{n}{rp}\PY{p}{)}
+    \PY{n}{ode15s}\PY{o}{.}\PY{n}{set\PYZus{}initial\PYZus{}value}\PY{p}{(}\PY{p}{[}\PY{n}{R}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{}Integrate Rayleigh Plesset Equation and store the results every dt}
+    \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{while} \PY{n}{ode15s}\PY{o}{.}\PY{n}{successful}\PY{p}{(}\PY{p}{)} \PY{o+ow}{and} \PY{n}{ode15s}\PY{o}{.}\PY{n}{t} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{n}{t\PYZus{}sim}\PY{p}{)}\PY{p}{:}
+        \PY{n}{ode15s}\PY{o}{.}\PY{n}{integrate}\PY{p}{(}\PY{n}{ode15s}\PY{o}{.}\PY{n}{t}\PY{o}{+}\PY{n}{delta\PYZus{}t}\PY{p}{)}
+        \PY{n}{time}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{ode15s}\PY{o}{.}\PY{n}{t}
+        \PY{n}{R}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{ode15s}\PY{o}{.}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{k} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        
+    \PY{c+c1}{\PYZsh{}Plotting}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{200}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{clf}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{f}\PY{p}{,}\PY{n}{R}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{R0}\PY{p}{)}\PY{p}{;}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time (1/f)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Radius (R0)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{f}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mf}{1.}\PY{p}{,}\PYZbs{}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MI=\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{pa}\PY{o}{/}\PY{l+m+mf}{1e6}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{f}\PY{o}{/}\PY{l+m+mf}{1e6}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PYZbs{}
+             \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{25}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+    \PY{n}{display}\PY{o}{.}\PY{n}{clear\PYZus{}output}\PY{p}{(}\PY{n}{wait}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+    
+\PY{c+c1}{\PYZsh{}Userinterface    }
+\PY{n}{w\PYZus{}frequency}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{FloatSlider}\PY{p}{(}\PY{n+nb}{min}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{n+nb}{max}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{,}\PYZbs{}
+                                       \PY{n}{value}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency (MHz):}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}pressure}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{FloatSlider}\PY{p}{(}\PY{n+nb}{min}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{n+nb}{max}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PYZbs{}
+                                       \PY{n}{value}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,}\PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Acoustic amplitude (bar):}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}R0}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{FloatSlider}\PY{p}{(}\PY{n+nb}{min}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{n+nb}{max}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PYZbs{}
+                                       \PY{n}{value}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{3}\PY{p}{,}\PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nucleus size (micrometer):}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}ncycles}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{IntSlider}\PY{p}{(}\PY{n+nb}{min}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n+nb}{max}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PYZbs{}
+                                       \PY{n}{value}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of cyles}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}frequency}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{plotall}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}auto update}
+\PY{n}{w\PYZus{}pressure}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{plotall}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+\PY{n}{w\PYZus{}R0}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{plotall}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}ncycles}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{plotall}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{display}\PY{o}{.}\PY{n}{display}\PY{p}{(}\PY{n}{w\PYZus{}frequency}\PY{p}{)}
+\PY{n}{display}\PY{o}{.}\PY{n}{display}\PY{p}{(}\PY{n}{w\PYZus{}pressure}\PY{p}{)}
+\PY{n}{display}\PY{o}{.}\PY{n}{display}\PY{p}{(}\PY{n}{w\PYZus{}R0}\PY{p}{)}
+\PY{n}{display}\PY{o}{.}\PY{n}{display}\PY{p}{(}\PY{n}{w\PYZus{}ncycles}\PY{p}{)}
+\PY{n}{plotall}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+    \end{Verbatim}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{lecture 9_files/lecture 9_4_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    \subsection{Thermal index}\label{thermal-index}
+
+The thermal indes is defined as
+
+\begin{equation}
+\mathrm{TI}=\frac{W_0}{W_{deg}}\label{9.6}\tag{9.6}
+\end{equation}
+
+where \(W_0\) is the time-averaged acoustic power of the source and
+\(W_{deg}\) is the power necessary to increase the target tissue by
+\(1^\circ\)C. Three commonly used thermal indices are the thermal index
+of soft tissue (TIS), the thermal index of bone (TIB) and the thermal
+index of cranial bone (TIC). Recommendation is that at a TI value of 2.0
+the examination should not exceed 60 min, while at a TI of 3.0 the
+duration should be reduced to 15 min.
+\subsection{High Intensity Focused
+Ultrasound}\label{high-intensity-focused-ultrasound}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}10}]:}
+    
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{lecture 9_files/lecture 9_7_0.jpe}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+A general introduction is available
+\href{http://www.myvmc.com/treatments/high-intensity-focused-ultrasound-hifu}{here}.
+\subsection{Histotripsy}\label{histotripsy}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}9}]:}
+    
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{lecture 9_files/lecture 9_10_0.jpe}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+A general introduction is available \href{./pdfs/histotripsy.pdf}{here}
+and a website with ample information is available
+\href{http://www.histotripsy.umich.edu}{here}
+\begin{Verbatim}[commandchars=\\\{\},gobble=2,numbers=left,fontsize=\small,baselinestretch=1]
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
