@@ -1,0 +1,103 @@
+<link href='http://fonts.googleapis.com/css?family=Fenix' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,400,500,700,800,900,100italic,300italic,400italic,500italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400' rel='stylesheet' type='text/css'>
+<style>
+@font-face {
+font-family: "Computer Modern";
+src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+}
+div.cell{
+	width:900px;
+	margin-left:5% !important;
+	margin-right:auto;
+}
+div.YourWork{
+	background-color: #FFCC66;
+}
+div.Detail{
+	background-color: #DDEEDD;
+	font-size: 80%;
+	border: 1px solid black;
+	padding: 10px;		
+}
+div.Figure{
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+	margin: 30px;
+}
+h1 {
+font-family: 'Alegreya Sans', sans-serif;
+}
+h2 {
+font-family: 'Fenix', serif;
+}
+h3{
+font-family: 'Fenix', serif;
+margin-top:12px;
+margin-bottom: 3px;
+}
+h4{
+font-family: 'Fenix', serif;
+}
+h5 {
+font-family: 'Alegreya Sans', sans-serif;
+}
+div.text_cell_render{
+font-family: 'Alegreya Sans',Computer Modern, "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+line-height: 135%;
+font-size: 140%;
+width:800px;
+margin-left:auto;
+margin-right:auto;
+}
+.CodeMirror{
+font-family: "Source Code Pro";
+font-size: 100%;
+}
+.rendered_html code{
+	background-color: transparent;	
+}
+/* .prompt{
+display: None;
+}*/
+.text_cell_render h1 {
+font-weight: 120;
+font-size: 30pt;
+line-height: 100%;
+color:#CD2305;
+margin-bottom: 0.5em;
+margin-top: 0.5em;
+display: block;
+}
+.text_cell_render h5 {
+font-weight: 300;
+font-size: 12pt;
+margin-bottom: 0.5em;
+margin-top: 0.5em;
+display: block;
+border-style: double;
+border-width: medium;
+border-color: black;
+background-color: #F0F0F0;
+text-align: center;
+}
+.warning{
+color: rgb( 240, 20, 20 )
+}
+</style>
+<script>
+MathJax.Hub.Config({
+TeX: {
+extensions: ["AMSmath.js"]
+},
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+},
+displayAlign: 'center', // Change this to 'center' to center equations.
+"HTML-CSS": {
+styles: {'.MathJax_Display': {"margin": 4}}
+}
+});
+</script>
